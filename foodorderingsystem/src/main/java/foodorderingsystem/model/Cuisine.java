@@ -1,14 +1,10 @@
 package foodorderingsystem.model;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class Cuisine
 {
 
   private int cuisineID;
   private String cuisineName;
-  List<Lunch> lunchMenu = new ArrayList<Lunch>();
 
   public Cuisine()
   {
@@ -38,15 +34,5 @@ public class Cuisine
   public void setCuisineName(String cuisineName)
   {
     this.cuisineName = cuisineName;
-  }
-
-  public List<Lunch> getLunchMenu()
-  {
-    return lunchMenu;
-  }
-
-  public void setLunchMenu(List<Lunch> lunchMenu)
-  {
-    this.lunchMenu = lunchMenu;
   }
 }

@@ -2,12 +2,36 @@ package foodorderingsystem.model;
 
 import java.math.BigDecimal;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "Lunch")
 public class Lunch
 {
 
+  @Id
+  @Column(name = "LunchID")
+  @GeneratedValue(strategy = GenerationType.AUTO)
   private int lunchID;
+
+  @ManyToOne
+  @JoinColumn(name = "CuisineID")
+  private Cuisine cuisine;
+
+  @Column(name = "MainCourse")
   private String maincourse;
+
+  @Column(name = "Dessert")
   private String dessert;
+
+  @Column(name = "Price")
   private BigDecimal price;
 
   public Lunch()
