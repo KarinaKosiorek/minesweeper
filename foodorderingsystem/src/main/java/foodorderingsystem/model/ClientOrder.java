@@ -23,6 +23,9 @@ public class ClientOrder {
   private MainCourse mainCourse;
 
   @ManyToOne
+  private Dessert dessert;
+
+  @ManyToOne
   private Drink drink;
 
   @Column(name = "Price", precision = 10, scale = 2)
@@ -46,13 +49,16 @@ public class ClientOrder {
   public ClientOrder() {
   }
 
-  public ClientOrder(int orderID, MainCourse mainCourse, Drink drink, BigDecimal price, boolean lemon, boolean iceCubes) {
-    this.clientOrderID = orderID;
+  public ClientOrder(MainCourse mainCourse, Dessert dessert, Drink drink, BigDecimal price, boolean lemon, boolean iceCubes,
+      String address, String phone) {
     this.mainCourse = mainCourse;
+    this.dessert = dessert;
     this.drink = drink;
     this.price = price;
     this.lemon = lemon;
     this.iceCubes = iceCubes;
+    this.address = address;
+    this.phone = phone;
   }
 
   public int getOrderID() {
@@ -109,5 +115,13 @@ public class ClientOrder {
 
   public void setMainCourse(MainCourse mainCourse) {
     this.mainCourse = mainCourse;
+  }
+
+  public Dessert getDessert() {
+    return dessert;
+  }
+
+  public void setDessert(Dessert dessert) {
+    this.dessert = dessert;
   }
 }

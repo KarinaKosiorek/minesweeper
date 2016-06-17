@@ -31,11 +31,9 @@ public class MainCourse {
   private BigDecimal price;
 
   public MainCourse() {
-
   }
 
-  public MainCourse(int mainCourseID, Cuisine cuisine, String name, BigDecimal price) {
-    this.mainCourseID = mainCourseID;
+  public MainCourse(Cuisine cuisine, String name, BigDecimal price) {
     this.cuisine = cuisine;
     this.name = name;
     this.price = price;

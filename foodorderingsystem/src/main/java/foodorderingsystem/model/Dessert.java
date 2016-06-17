@@ -12,6 +12,7 @@ import javax.persistence.Table;
 @Entity
 @Table(name = " Dessert")
 public class Dessert {
+
   @Id
   @Column(name = "DessertID")
   @GeneratedValue(strategy = GenerationType.AUTO)
@@ -26,8 +27,7 @@ public class Dessert {
   public Dessert() {
   }
 
-  public Dessert(int dessertID, String name, BigDecimal price) {
-    this.dessertID = dessertID;
+  public Dessert(String name, BigDecimal price) {
     this.name = name;
     this.price = price;
   }

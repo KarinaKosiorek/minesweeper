@@ -22,8 +22,7 @@ public class Cuisine {
   public Cuisine() {
   }
 
-  public Cuisine(int cuisineID, String name) {
-    this.cuisineID = cuisineID;
+  public Cuisine(String name) {
     this.name = name;
   }
 

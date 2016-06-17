@@ -27,8 +27,7 @@ public class Drink {
   public Drink() {
   }
 
-  public Drink(int drinkID, String name, BigDecimal price) {
-    this.drinkID = drinkID;
+  public Drink(String name, BigDecimal price) {
     this.name = name;
     this.price = price;
   }

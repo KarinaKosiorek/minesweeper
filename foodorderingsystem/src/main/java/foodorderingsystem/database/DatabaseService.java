@@ -8,6 +8,9 @@ import java.sql.Statement;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 
+import foodorderingsystem.database.tablemanager.QueryManager;
+import foodorderingsystem.main.FOSClientConfiguration;
+
 public class DatabaseService {
 
   // JDBC driver name and database URL
@@ -79,6 +82,14 @@ public class DatabaseService {
   }
 
   public String makeOrder(String lunch, String drink, String lemon, String icecubes, String address, String phone) {
-    return queryManager.makeOrder(lunch, drink, lemon, icecubes, address, phone);
+    boolean lemonOption = false;
+    boolean iceCubesOption = false;
+    if (lemon != null && lemon.equals(FOSClientConfiguration.LEMON_OPTION)) {
+      lemonOption = true;
+    }
+    if (icecubes != null && icecubes.equals(FOSClientConfiguration.ICECUBES_OPTION)) {
+      iceCubesOption = true;
+    }
+    return queryManager.makeOrder(lunch, drink, lemonOption, iceCubesOption, address, phone);
   }
 }
