@@ -21,7 +21,7 @@ public class Drink {
   @Column(name = "Name")
   private String name;
 
-  @Column(name = "Price")
+  @Column(name = "Price", precision = 10, scale = 2)
   private BigDecimal price;
 
   public Drink() {
