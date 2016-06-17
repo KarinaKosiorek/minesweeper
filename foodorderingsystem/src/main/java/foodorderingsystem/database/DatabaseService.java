@@ -28,45 +28,27 @@ public class DatabaseService {
   }
 
   private void initHibernateManagement() {
-    // try {
     factory = new Configuration().configure().buildSessionFactory();
     if (factory == null) {
-      throw new IllegalStateException("");
+      throw new IllegalStateException("Cannot instantiate hibernate factory.");
     }
     this.queryManager = new QueryManager(factory);
-    // } catch (Throwable ex) {
-    // / System.err.println("Failed to create sessionFactory object." + ex);
-    // throw new ExceptionInInitializerError(ex);
-    // }
   }
 
   private void createDatabaseIfNotExists() throws Exception {
     Connection conn = null;
     Statement stmt = null;
     try {
-      // Register JDBC driver
       Class.forName("com.mysql.jdbc.Driver");
-
-      // Open a connection
-      System.out.println("Connecting to database...");
       conn = DriverManager.getConnection(DB_URL, USER, PASS);
-
-      // Execute a query
-      System.out.println("Creating database...");
       stmt = conn.createStatement();
-
       String sql = "CREATE DATABASE IF NOT EXISTS FoodOrderingSystemDB";
       stmt.executeUpdate(sql);
-      System.out.println("Database created successfully...");
     } catch (SQLException se) {
-      // Handle errors for JDBC
-      se.printStackTrace();
+      throw se;
     } catch (Exception e) {
-      // Handle errors for Class.forName
-      // e.printStackTrace();
       throw e;
     } finally {
-      // finally block used to close resources
       try {
         if (stmt != null)
           stmt.close();
@@ -76,8 +58,27 @@ public class DatabaseService {
         if (conn != null)
           conn.close();
       } catch (SQLException se) {
-        // se.printStackTrace();
       }
     }
+  }
+
+  public String getMenu() {
+    return queryManager.getMenu();
+  }
+
+  public String getCuisines() {
+    return queryManager.getCuisines();
+  }
+
+  public String getCuisine(String cuisine) {
+    return queryManager.getCuisine(cuisine);
+  }
+
+  public String getDrinks() {
+    return queryManager.getDrinks();
+  }
+
+  public String makeOrder(String lunch, String drink, String lemon, String icecubes, String address, String phone) {
+    return queryManager.makeOrder(lunch, drink, lemon, icecubes, address, phone);
   }
 }

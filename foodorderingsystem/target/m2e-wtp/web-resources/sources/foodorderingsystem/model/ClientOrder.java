@@ -34,6 +34,15 @@ public class ClientOrder {
   @Column(name = "IceCubes")
   private boolean iceCubes = false;
 
+  @Column(name = "Address")
+  private String address;
+
+  @Column(name = "Phone")
+  private String phone;
+
+  @Column(name = "Done")
+  private boolean done = false;
+
   public ClientOrder() {
   }
 
