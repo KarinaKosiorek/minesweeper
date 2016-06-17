@@ -1,38 +1,45 @@
 package foodorderingsystem.model;
 
-public class Cuisine
-{
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
+@Entity
+@Table(name = "Cuisine")
+public class Cuisine {
+
+  @Id
+  @Column(name = "CuisineID")
+  @GeneratedValue(strategy = GenerationType.AUTO)
   private int cuisineID;
-  private String cuisineName;
 
-  public Cuisine()
-  {
+  @Column(name = "Name")
+  private String name;
+
+  public Cuisine() {
   }
 
-  public Cuisine(int cuisineID, String cuisineName)
-  {
+  public Cuisine(int cuisineID, String name) {
     this.cuisineID = cuisineID;
-    this.cuisineName = cuisineName;
+    this.name = name;
   }
 
-  public int getCuisineID()
-  {
+  public int getCuisineID() {
     return cuisineID;
   }
 
-  public void setCuisineID(int cuisineID)
-  {
+  public void setCuisineID(int cuisineID) {
     this.cuisineID = cuisineID;
   }
 
-  public String getCuisineName()
-  {
-    return cuisineName;
+  public String getName() {
+    return name;
   }
 
-  public void setCuisineName(String cuisineName)
-  {
-    this.cuisineName = cuisineName;
+  public void setName(String name) {
+    this.name = name;
   }
 }

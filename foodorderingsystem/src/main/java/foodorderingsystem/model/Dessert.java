@@ -10,43 +10,34 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "Drink")
-public class Drink {
-
+@Table(name = " Dessert")
+public class Dessert {
   @Id
+  @Column(name = "DessertID")
   @GeneratedValue(strategy = GenerationType.AUTO)
-  @Column(name = "DrinkID")
-  private int drinkID;
+  private int dessertID;
 
   @Column(name = "Name")
   private String name;
 
-  @Column(name = "Price")
+  @Column(name = "Price", precision = 10, scale = 2)
   private BigDecimal price;
 
-  public Drink() {
+  public Dessert() {
   }
 
-  public Drink(int drinkID, String name, BigDecimal price) {
-    this.drinkID = drinkID;
+  public Dessert(int dessertID, String name, BigDecimal price) {
+    this.dessertID = dessertID;
     this.name = name;
     this.price = price;
   }
 
-  public int getDrinkID() {
-    return drinkID;
+  public int getDessertID() {
+    return dessertID;
   }
 
-  public void setDrinkID(int drinkID) {
-    this.drinkID = drinkID;
-  }
-
-  public BigDecimal getPrice() {
-    return price;
-  }
-
-  public void setPrice(BigDecimal price) {
-    this.price = price;
+  public void setDessertID(int dessertID) {
+    this.dessertID = dessertID;
   }
 
   public String getName() {
@@ -57,4 +48,11 @@ public class Drink {
     this.name = name;
   }
 
+  public BigDecimal getPrice() {
+    return price;
+  }
+
+  public void setPrice(BigDecimal price) {
+    this.price = price;
+  }
 }
