@@ -10,7 +10,8 @@ import foodorderingsystem.model.Dessert;
 import foodorderingsystem.model.Drink;
 import foodorderingsystem.model.MainCourse;
 
-public class QueryManager {
+public class QueryManager
+{
 
   private ClientOrderManager clientOrderManager = new ClientOrderManager();
   private CuisineManager cuisineManager = new CuisineManager();
@@ -18,7 +19,8 @@ public class QueryManager {
   private DessertManager dessertManager = new DessertManager();
   private DrinkManager drinkManager = new DrinkManager();
 
-  public QueryManager(SessionFactory factory) {
+  public QueryManager(SessionFactory factory)
+  {
     clientOrderManager.setFactory(factory);
     cuisineManager.setFactory(factory);
     mainCourseManager.setFactory(factory);
@@ -26,24 +28,36 @@ public class QueryManager {
     drinkManager.setFactory(factory);
   }
 
-  public void addMainCourses() {
+  public void addMainCourses()
+  {
     Cuisine polishCuisine = cuisineManager.getCuisine("Polish");
-    mainCourseManager.addMainCourse(polishCuisine, "Dumplings", new BigDecimal(15));
-    mainCourseManager.addMainCourse(polishCuisine, "Pork Chop", new BigDecimal(17));
+    if (polishCuisine != null)
+    {
+      mainCourseManager.addMainCourse(polishCuisine, "Dumplings", new BigDecimal(15));
+      mainCourseManager.addMainCourse(polishCuisine, "Pork Chop", new BigDecimal(17));
+    }
 
     Cuisine italianCuisine = cuisineManager.getCuisine("Italian");
-    mainCourseManager.addMainCourse(italianCuisine, "Spaghetti Bolognese", new BigDecimal(16));
-    mainCourseManager.addMainCourse(italianCuisine, "Pizza", new BigDecimal(20));
+    if (italianCuisine != null)
+    {
+      mainCourseManager.addMainCourse(italianCuisine, "Spaghetti Bolognese", new BigDecimal(16));
+      mainCourseManager.addMainCourse(italianCuisine, "Pizza", new BigDecimal(20));
+    }
 
     Cuisine mexicanCuisine = cuisineManager.getCuisine("Mexican");
-    mainCourseManager.addMainCourse(mexicanCuisine, "Burrito", new BigDecimal(16));
-    mainCourseManager.addMainCourse(mexicanCuisine, "Nachos", new BigDecimal(18));
+    if (mexicanCuisine != null)
+    {
+      mainCourseManager.addMainCourse(mexicanCuisine, "Burrito", new BigDecimal(16));
+      mainCourseManager.addMainCourse(mexicanCuisine, "Nachos", new BigDecimal(18));
+    }
   }
 
-  public String getMenu() {
+  public String getMenu()
+  {
     StringBuilder result = new StringBuilder();
     List<Cuisine> listCuisines = cuisineManager.listCuisines();
-    for (Cuisine cuisine : listCuisines) {
+    for (Cuisine cuisine : listCuisines)
+    {
       result.append(getMainCourses(cuisine));
     }
     result.append(getDesserts());
@@ -51,11 +65,13 @@ public class QueryManager {
     return result.toString();
   }
 
-  public String getCuisines() {
+  public String getCuisines()
+  {
     StringBuilder result = new StringBuilder();
     result.append("Cuisine:");
     List<Cuisine> listCuisines = cuisineManager.listCuisines();
-    for (Cuisine cuisine : listCuisines) {
+    for (Cuisine cuisine : listCuisines)
+    {
       result.append(cuisine.toString());
       result.append("\n");
     }
@@ -63,27 +79,32 @@ public class QueryManager {
     return result.toString();
   }
 
-  public String getCuisine(String name) {
+  public String getCuisine(String name)
+  {
     Cuisine cuisine = cuisineManager.getCuisine(name);
     return getMainCourses(cuisine);
   }
 
-  public String getDrinks() {
+  public String getDrinks()
+  {
     StringBuilder result = new StringBuilder();
     result.append("Drinks:");
     result.append("\n");
-    for (Drink drink : drinkManager.listDrinks()) {
+    for (Drink drink : drinkManager.listDrinks())
+    {
       result.append(drink.toString());
     }
     result.append("\n");
     return result.toString();
   }
 
-  public String getDesserts() {
+  public String getDesserts()
+  {
     StringBuilder result = new StringBuilder();
     result.append("Desserts:");
     result.append("\n");
-    for (Dessert dessert : dessertManager.listDesserts()) {
+    for (Dessert dessert : dessertManager.listDesserts())
+    {
       result.append(dessert.toString());
       result.append("\n");
     }
@@ -91,7 +112,8 @@ public class QueryManager {
     return result.toString();
   }
 
-  public String makeOrder(String lunch, String drinkName, boolean lemon, boolean icecubes, String address, String phone) {
+  public String makeOrder(String lunch, String drinkName, boolean lemon, boolean icecubes, String address, String phone)
+  {
     String[] split = lunch.split("+");
     String mainCourseName = split[0];
     String dessertName = split[1];
@@ -104,17 +126,27 @@ public class QueryManager {
     return "Order received!";
   }
 
-  public String getMainCourses(Cuisine cuisine) {
+  public String getMainCourses(Cuisine cuisine)
+  {
     StringBuilder result = new StringBuilder();
     List<MainCourse> mainCourses = mainCourseManager.getMainCourses(cuisine);
     result.append("Main courses for cuisine:" + cuisine.toString());
     result.append("\n");
 
-    for (MainCourse mainCourse : mainCourses) {
+    for (MainCourse mainCourse : mainCourses)
+    {
       result.append(mainCourse.toString());
       result.append("\n");
     }
     result.append("\n");
     return result.toString();
+  }
+
+  public void generateExampleRecords()
+  {
+    cuisineManager.initCuisines();
+    dessertManager.initDesserts();
+    drinkManager.initDrinks();
+    addMainCourses();
   }
 }

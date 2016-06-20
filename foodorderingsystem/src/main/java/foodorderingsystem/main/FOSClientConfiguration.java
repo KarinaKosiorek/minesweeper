@@ -1,6 +1,7 @@
 package foodorderingsystem.main;
 
-public class FOSClientConfiguration {
+public class FOSClientConfiguration
+{
   // client syntax options
   public static final String MENU_OPTION = "-menu";
   public static final String CUISINES_OPTION = "-cuisine";
@@ -16,6 +17,6 @@ public class FOSClientConfiguration {
   public static final String ADDRESS_OPTION = "-address";
   public static final String PHONE_OPTION = "-phone";
 
-  public static final String SYNTAX_HELP_FILE = "client.syntax.txt";
+  public static final String SYNTAX_HELP_FILE = "clientsyntax.txt";
 
 }

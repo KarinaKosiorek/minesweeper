@@ -5,13 +5,13 @@
 <web-app>
   <display-name>Web Application</display-name>
    	<servlet>
-     	<servlet-name>MakeOrderServlet</servlet-name>
-     	<servlet-class>foodorderingsystem.main.MakeOrderServlet</servlet-class>
+     	<servlet-name>FoodOrderingSystemSerlvet</servlet-name>
+     	<servlet-class>foodorderingsystem.main.FoodOrderingSystemSerlvet</servlet-class>
     </servlet>
    	
    	<servlet-mapping>
-     	<servlet-name>MakeOrderServlet</servlet-name>
-     	<url-pattern>/makeOrder</url-pattern>
+     	<servlet-name>FoodOrderingSystemSerlvet</servlet-name>
+     	<url-pattern>/*</url-pattern>
     </servlet-mapping>
    
 </web-app>
